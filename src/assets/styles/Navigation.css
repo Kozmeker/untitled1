@@ -1,0 +1,41 @@
+nav {
+    background-color: #ababab;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+    background-color: #7e7e7e;
+    padding: 0 10px;
+    border-left: 1px solid #ffffff; /* Ohraničení na levé straně */
+    border-right: 1px solid #ffffff; /* Ohraničení na pravé straně */
+    margin: 0 25px;
+    font-size: xx-large;
+    transition: background-color 0.3s;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+nav ul li:hover {
+    background-color: #cbcbcb; /* Změna barvy pozadí na hover */
+}
+
+nav ul li a:hover {
+    color: #000000;
+}
+
+nav ul li a.active {
+    font-weight: bold;
+}

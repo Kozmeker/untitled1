@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import '../assets/styles/UsernameForm.css';
 
-const UsernameForm = ({ value, setValue, setError }) => {
+const UsernameForm = ({ value, setValue, setConfirmPasswordError }) => {
     const [errorMessage, setErrorMessage] = useState('');
 
     const handleChange = (event) => {
@@ -10,12 +10,12 @@ const UsernameForm = ({ value, setValue, setError }) => {
         setValue(value);
         if (value.length < 4) {
             setErrorMessage('Uživatelské jméno musí být alespoň 4 znaky dlouhé');
-            setError('Uživatelské jméno musí být alespoň 4 znaky dlouhé');
+            setConfirmPasswordError('Uživatelské jméno musí být alespoň 4 znaky dlouhé');
         } else if (value.length > 15) {
             setErrorMessage('Uživatelské jméno nemůže být delší než 16 znaků');
         } else {
             setErrorMessage('');
-            setError('');
+            setConfirmPasswordError('');
         }
     };
 

@@ -12,26 +12,19 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     return (
         <Router>
             <div>
                 <Navigation isLoggedIn={isLoggedIn} />
                 <Routes>
-                    {isLoggedIn === null ? (
-                        <>
                             <Route path="/login" element={<Login />} />
                             <Route path="/register" element={<Register />} />
-                        </>
-                    ) : (
-                        <>
                             <Route path="/" element={<Home />} />
                             <Route path="/exercises" element={<Exercises />} />
                             <Route path="/aboutus" element={<AboutUs />} />
                             <Route path="/contact" element={<Contact />} />
-                        </>
-                    )}
                 </Routes>
             </div>
         </Router>

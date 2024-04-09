@@ -10,8 +10,9 @@ const RegisterForm = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [registrationErrors, setRegistrationErrors] = useState([]);
 
+    const errors = [];
     const handleRegistration = () => {
-        const errors = [];
+
         if (username === '') {
             errors.push('Uživatelské jméno je povinné');
         }
@@ -45,6 +46,7 @@ const RegisterForm = () => {
             // Zobrazení chybového popupu
             alert(errors.join('\n'));
             setRegistrationErrors(errors);
+
         }
     };
 
@@ -54,18 +56,20 @@ const RegisterForm = () => {
             <UsernameForm
                 value={username}
                 setValue={setUsername}
+                setConfirmPasswordError={(error) => setRegistrationErrors((prevErrors) => [...prevErrors, error])}
             />
             <EmailForm
                 value={email}
                 setValue={setEmail}
+                setConfirmPasswordError={(error) => setRegistrationErrors((prevErrors) => [...prevErrors, error])}
             />
             <PasswordForm
                 value={password}
                 setValue={setPassword}
                 confirmValue={confirmPassword}
                 setConfirmValue={setConfirmPassword}
-                setPasswordErrorProp={setRegistrationErrors} // Předejte funkci pro nastavení chybového stavu
-                setConfirmPasswordErrorProp={setRegistrationErrors} // Předejte funkci pro nastavení chybového stavu
+                setPasswordError={(error) => setRegistrationErrors((prevErrors) => [...prevErrors, error])}
+                setConfirmPasswordError={(error) => setRegistrationErrors((prevErrors) => [...prevErrors, error])}
             />
             <button onClick={handleRegistration}>Zaregistrovat se</button>
         </div>

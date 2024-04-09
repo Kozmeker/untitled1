@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import '../assets/styles/EmailForm.css';
 
-const EmailForm = ({ value, setValue, setError }) => {
+const EmailForm = ({ value, setValue, setConfirmPasswordError }) => {
     const [errorMessage, setErrorMessage] = useState('');
 
     const handleChange = (event) => {
@@ -11,10 +11,10 @@ const EmailForm = ({ value, setValue, setError }) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(value)) {
             setErrorMessage('Zadejte platnou e-mailovou adresu');
-            setError('Zadejte platnou e-mailovou adresu');
+            setConfirmPasswordError('Zadejte platnou e-mailovou adresu');
         } else {
             setErrorMessage('');
-            setError('');
+            setConfirmPasswordError('');
         }
     };
 

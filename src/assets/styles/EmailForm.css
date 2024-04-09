@@ -1,0 +1,20 @@
+.email-form-container {
+    text-align: center; /* Centrování obsahu */
+    margin: 0 auto; /* Centrování pole */
+    width: 50%; /* Šířka kontejneru */
+}
+
+.email-input {
+    width: 25%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.error-message {
+    color: red;
+    margin-top: 5px;
+    font-size: 12px;
+}

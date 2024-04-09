@@ -19,16 +19,24 @@ function App() {
             <div>
                 <Navigation isLoggedIn={isLoggedIn} />
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/exercises" element={<Exercises />} />
-                    <Route path="/aboutus" element={<AboutUs />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
+                    {isLoggedIn === null ? (
+                        <>
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/register" element={<Register />} />
+                        </>
+                    ) : (
+                        <>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/exercises" element={<Exercises />} />
+                            <Route path="/aboutus" element={<AboutUs />} />
+                            <Route path="/contact" element={<Contact />} />
+                        </>
+                    )}
                 </Routes>
             </div>
         </Router>
     );
 }
+
 
 export default App;

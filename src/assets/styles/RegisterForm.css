@@ -1,0 +1,46 @@
+.register-form-container {
+    width: 500px;
+    margin: 0 auto; /* Nastaví horní a dolní okraj na 0 a zbytek na auto, což nacentruje formulář na střed */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    display: block; /* Zobrazí formulář jako blokový prvek */
+    height: auto; /* Přidává výšku kontejneru */
+    overflow: auto; /* Zajišťuje, že se vnitřní obsah bude zobrazovat i v případě, že bude přesahovat rozměry kontejneru */
+    text-align: center; /* Zarovnává obsah do středu */
+}
+
+.register-form-container h2 {
+    margin-bottom: 20px;
+}
+
+.register-form-container input[type="text"],
+.register-form-container input[type="email"],
+.register-form-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.register-form-container .error-message {
+    color: red;
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+.register-form-container button {
+    width: 30%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.register-form-container button:hover {
+    background-color: #0056b3;
+}

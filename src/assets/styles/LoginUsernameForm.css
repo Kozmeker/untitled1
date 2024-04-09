@@ -1,0 +1,25 @@
+.input-container {
+    text-align: center; /* Centrování obsahu */
+    margin: 0 auto; /* Centrování pole */
+    width: 50%; /* Šířka kontejneru */
+}
+
+.input-container label {
+    display: block; /* Rozdělení na samostatný řádek */
+    margin-bottom: 5px; /* Odstup od následujícího prvku */
+}
+
+.input-container input[type="text"] {
+    width: 100%; /* Plná šířka */
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.error-message {
+    color: red;
+    margin-top: 5px;
+    font-size: 12px;
+}

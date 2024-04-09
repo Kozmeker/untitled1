@@ -1,12 +1,11 @@
 import React from 'react';
 import Navigation from "../components/Navigation";
+import RegisterForm from "../components/RegisterForm";
 
 const Exercises = () => {
     return (
         <div>
-            <h1>Registrace!</h1>
-            <div>fuiaefjefaefuieiaeffeui</div>
-            {/* Obsah stránky about us */}
+            <RegisterForm></RegisterForm>
         </div>
     );
 }

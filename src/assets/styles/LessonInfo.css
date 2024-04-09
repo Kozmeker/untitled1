@@ -1,0 +1,9 @@
+.lesson-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.lesson-info p {
+    margin-right: 10px;
+}

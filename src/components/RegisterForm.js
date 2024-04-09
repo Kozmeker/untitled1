@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import UsernameForm from './UsernameForm';
 import EmailForm from './EmailForm';
 import PasswordForm from './PasswordForm';
+import '../assets/styles/RegisterForm.css'; // Importujeme styly pro RegisterForm
 
 const RegisterForm = () => {
     const [username, setUsername] = useState('');
@@ -51,7 +52,7 @@ const RegisterForm = () => {
     };
 
     return (
-        <div>
+        <div className="register-form-container"> {/* Přidáváme třídu pro stylování */}
             <h2>Registrace</h2>
             <UsernameForm
                 value={username}

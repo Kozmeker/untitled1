@@ -12,6 +12,18 @@
     text-align: center;
 }
 
+.lesson-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.lesson-info > * {
+    flex-direction: column;
+    text-align: left;
+}
+
+
 .lesson-info-container {
     border-bottom: 1px solid #ccc; /* Ohraničení dolní části kontejneru s informacemi */
     padding-bottom: 10px; /* Mezera pod sekce s informacemi */
@@ -22,12 +34,8 @@
     border: 1px solid #ccc; /* Ohraničení popisu lekce */
     padding: 10px; /* Odsazení popisu lekce */
     margin-bottom: 20px; /* Mezera pod popisem lekce */
-}
-
-.lesson-info {
-    display: flex; /* Zobrazí informace o lekci v jednom řádku */
-    flex-direction: row; /* Zarovná informace vedle sebe */
-    justify-content: space-between; /* Zarovná informace na okrajích */
+    display: flex;
+    flex-direction: row;
 }
 
 .lesson-detail-container h2 {
@@ -50,4 +58,9 @@
 
 .lesson-buttons button {
     margin: 0 10px; /* Odsazení mezi tlačítky */
+}
+
+.full-message {
+    color: red; /* Červená barva textu */
+    font-weight: bold; /* Tučný text */
 }

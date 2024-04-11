@@ -14,7 +14,7 @@ const LessonDetail = () => {
         date: "2024-04-10",
         time: "15:00",
         capacity: 10,
-        registrations: ["Alice", "Bob", "Charlie"], // Seznam přihlášených účastníků
+        registrations: ["Alice", "Bob", "Charlie", "Charlie", "Charlie", "Charlie", "Charlie", "Charlie", "Charlie", "Charlie"], // Seznam přihlášených účastníků
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique eu justo at maximus. Nulla facilisi. Donec id mi at nibh ultricies cursus. Fusce non sapien a risus sollicitudin maximus vel a turpis. Sed non odio a eros bibendum vehicula. Sed vulputate erat quis enim rhoncus, at interdum magna interdum. Sed vel ante at velit tempor vestibulum. Nam eu purus vel nisi pellentesque suscipit. Donec at laoreet odio."
     };
 
@@ -46,7 +46,7 @@ const LessonDetail = () => {
             <div className="lesson-buttons">
                 {/* Podle stavu kapacity a registrace zobrazit tlačítko pro přihlášení/odhlášení */}
                 {isFull ? (
-                    <p>Kapacita této lekce je již plná.</p>
+                    <p className="full-message">Kapacita této lekce je již plná.</p>
                 ) : isRegistered ? (
                     <UnregisterButton/>
                 ) : (

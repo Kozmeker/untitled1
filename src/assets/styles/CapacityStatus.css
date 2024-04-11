@@ -1,9 +1,9 @@
 .capacity-status {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-.capacity-status p {
-    margin-right: 10px;
+.capacity-status.full {
+    background-color: #ff9999; /* Červené pozadí, když je kapacita naplněná */
 }

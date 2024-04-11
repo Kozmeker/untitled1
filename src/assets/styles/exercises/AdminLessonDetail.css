@@ -1,0 +1,97 @@
+.admin-lesson-detail-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    overflow: hidden; /* Upraveno na hidden */
+}
+
+.admin-lesson-detail-container h3 {
+    margin-bottom: 20px;
+}
+
+.admin-lesson-detail-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-lesson-detail-container .form-group {
+    margin-bottom: 15px;
+}
+
+.admin-lesson-detail-container label {
+    margin-bottom: 5px;
+}
+
+.admin-lesson-detail-container input[type="text"],
+.admin-lesson-detail-container input[type="date"],
+.admin-lesson-detail-container input[type="time"],
+.admin-lesson-detail-container input[type="number"],
+.admin-lesson-detail-container textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.admin-lesson-detail-container textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    height: 200px; /* Nastavit výšku textarea na 200px */
+    resize: vertical;
+}
+
+
+.admin-lesson-detail-container .button-group {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.admin-lesson-detail-container button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.admin-lesson-detail-container button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.admin-lesson-detail-container button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.admin-lesson-detail-container .save-button,
+.admin-lesson-detail-container .cancel-button{
+    background-color: #007bff; /* Modrá barva */
+    color: #fff;
+}
+
+.admin-lesson-detail-container .save-button:hover,
+.admin-lesson-detail-container .cancel-button:hover{
+    background-color: #0056b3; /* Tmavější modrá při najetí myší */
+}
+
+.admin-lesson-detail-container .delete-button {
+    background-color: #dc3545; /* Červená barva */
+    color: #fff;
+}
+
+.admin-lesson-detail-container .delete-button:hover {
+    background-color: #991a26; /* Tmavější červená při najetí myší */
+}
+

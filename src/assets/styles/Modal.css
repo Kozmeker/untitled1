@@ -15,8 +15,9 @@
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Stín pro zdůraznění modálního okna */
-    max-width: 80%;
-    max-height: 80%;
+    max-width: 90%;
+    min-width: 60%;
+    max-height: 90%;
     overflow: auto;
 }
 

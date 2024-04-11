@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../assets/styles/exercises/LessonPreview.css';
+import moment from "moment/moment";
 
 const LessonPreview = ({ lesson, onClick }) => {
     const { title, date, time, capacity, registrations } = lesson;
@@ -7,11 +8,13 @@ const LessonPreview = ({ lesson, onClick }) => {
     // Určení, zda je kapacita rovna počtu přihlášených
     const isFull = capacity === registrations.length;
 
+    const formattedDate = moment(date).format('D.M.YYYY');
+
     return (
         <div className="lesson-preview" onClick={onClick}> {/* Přidání onClick události pro otevření modálního okna */}
             <h3>{title}</h3>
             <div className="lesson-info">
-                <p>Datum: {date}</p>
+                <p>Datum: {formattedDate}</p>
                 <p>Čas: {time}</p>
                 <p className={isFull ? "full" : ""}>Kapacita: {capacity}</p>
                 <p className={isFull ? "full" : ""}>Přihlášeno: {registrations.length}</p>

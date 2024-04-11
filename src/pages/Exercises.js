@@ -19,7 +19,7 @@ const Exercises = () => {
 
     // Simulace dat o lekcích
     const lessons = [
-        { id: 1, title: 'Pilates', date: '2024-04-10', time: '15:00', capacity: 10, registrations: ['Alice', 'Bob', 'Charlie'] },
+        { id: 1, title: 'Pilates', date: '2024-04-10', time: '15:00', capacity: 10, registrations: ['Alice', 'Bob', 'Charlie', 'Charlie', 'Charlie', 'Charlie', 'Charlie', 'Charlie', 'Charlie', 'Charlie'] },
         // Další lekce...
     ];
 
@@ -33,7 +33,7 @@ const Exercises = () => {
 
             {/* Modální okno s podrobnostmi o lekci */}
             <Modal isOpen={isModalOpen} onClose={closeModal}>
-                <LessonDetail onClose={closeModal} /> {/* Předání prop onClose do LessonDetail */}
+                <LessonDetail isAdmin={true} onClose={closeModal} /> {/* Předání prop onClose do LessonDetail */}
             </Modal>
         </div>
     );

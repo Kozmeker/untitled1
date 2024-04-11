@@ -1,6 +1,7 @@
 .register-button,
 .close-button,
-.unregister-button {
+.unregister-button,
+.edit-button {
     width: 30%;
     padding: 10px;
     background-color: #007bff;
@@ -12,6 +13,7 @@
 
 .close-button:hover,
 .register-button:hover,
-.unregister-button:hover {
+.unregister-button:hover,
+.edit-button:hover {
     background-color: #0056b3;
 }

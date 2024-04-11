@@ -1,6 +1,6 @@
 // EmailForm.js
 import React, { useState } from 'react';
-import '../assets/styles/EmailForm.css';
+import '../../assets/styles/register/EmailForm.css';
 
 const EmailForm = ({ value, setValue, setConfirmPasswordError }) => {
     const [errorMessage, setErrorMessage] = useState('');

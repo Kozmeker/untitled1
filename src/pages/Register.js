@@ -1,6 +1,6 @@
 import React from 'react';
 import Navigation from "../components/Navigation";
-import RegisterForm from "../components/RegisterForm";
+import RegisterForm from "../components/register/RegisterForm";
 
 const Exercises = () => {
     return (

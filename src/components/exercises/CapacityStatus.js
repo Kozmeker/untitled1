@@ -1,5 +1,5 @@
 import React from 'react';
-import '../assets/styles/CapacityStatus.css';
+import '../../assets/styles/exercises/CapacityStatus.css';
 
 const CapacityStatus = ({ lesson }) => {
     const { capacity, registrations } = lesson;

@@ -1,0 +1,26 @@
+.lesson-preview {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 300px; /* Určuje šířku náhledu lekce */
+}
+
+.lesson-preview h3 {
+    margin-top: 0;
+    margin-bottom: 10px; /* Mezera pod názvem lekce */
+}
+
+.lesson-preview .lesson-info {
+    display: flex;
+    flex-direction: row; /* Zobrazení vlastností lekce vedle sebe */
+    flex-wrap: wrap; /* Převíjení na další řádek, pokud nejsou dostatečně široké */
+}
+
+.lesson-preview .lesson-info p {
+    margin-right: 10px; /* Mezera mezi jednotlivými vlastnostmi lekce */
+}
+
+.lesson-preview .lesson-info .full {
+    color: red; /* Barva textu červená pro vlastnosti kapacity a přihlášeno, pokud jsou stejné */
+}

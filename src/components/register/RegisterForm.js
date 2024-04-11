@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import UsernameForm from './UsernameForm';
 import EmailForm from './EmailForm';
 import PasswordForm from './PasswordForm';
-import '../assets/styles/RegisterForm.css'; // Importujeme styly pro RegisterForm
+import '../../assets/styles/register/RegisterForm.css'; // Importujeme styly pro RegisterForm
 
 const RegisterForm = () => {
     const [username, setUsername] = useState('');

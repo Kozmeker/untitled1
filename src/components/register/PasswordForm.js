@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../assets/styles/PasswordForm.css';
+import '../../assets/styles/register/PasswordForm.css';
 
 const PasswordForm = ({ value, setValue, confirmValue, setConfirmValue }) => {
     const [password, setPassword] = useState('');

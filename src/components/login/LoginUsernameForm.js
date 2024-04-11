@@ -1,5 +1,5 @@
 import React from 'react';
-import '../assets/styles/LoginUsernameForm.css';
+import '../../assets/styles/login/LoginUsernameForm.css';
 
 const LoginUsernameForm = ({ value, setValue }) => {
     const handleChange = (event) => {

@@ -4,9 +4,10 @@ import CapacityStatus from './CapacityStatus';
 import RegisterButton from './RegisterButton';
 import UnregisterButton from './UnregisterButton';
 import LessonDescription from './LessonDescription'; // Import komponenty LessonDescription
-import '../assets/styles/LessonDetail.css'; // Import CSS pro stylizaci
+import CloseButton from './CloseButton'; // Import komponenty CloseButton
+import '../../assets/styles/exercises/LessonDetail.css'; // Import CSS pro stylizaci
 
-const LessonDetail = () => {
+const LessonDetail = ({ onClose }) => { // Přidejte prop onClose pro zavření modálního okna
     // Definice informací o lekci
     const lesson = {
         id: 1,
@@ -52,6 +53,8 @@ const LessonDetail = () => {
                 ) : (
                     <RegisterButton/>
                 )}
+                {/* Tlačítko pro zavření modálního okna */}
+                <CloseButton onClose={onClose} />
             </div>
         </div>
     );

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../assets/styles/LoginPasswordForm.css';
+import '../../assets/styles/login/LoginPasswordForm.css';
 
 const LoginPasswordForm = ({ value, setValue }) => {
     const handleChange = (event) => {

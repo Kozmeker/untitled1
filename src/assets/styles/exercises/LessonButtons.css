@@ -1,4 +1,5 @@
 .register-button,
+.close-button,
 .unregister-button {
     width: 30%;
     padding: 10px;
@@ -9,6 +10,7 @@
     cursor: pointer;
 }
 
+.close-button:hover,
 .register-button:hover,
 .unregister-button:hover {
     background-color: #0056b3;

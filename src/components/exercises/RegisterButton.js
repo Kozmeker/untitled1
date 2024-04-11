@@ -1,6 +1,6 @@
 // RegisterButton.jsx
 import React from 'react';
-import '../assets/styles/LessonButtons.css';
+import '../../assets/styles/exercises/LessonButtons.css';
 
 const RegisterButton = () => {
     const handleRegister = () => {

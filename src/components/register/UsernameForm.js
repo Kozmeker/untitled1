@@ -1,6 +1,6 @@
 // UsernameForm.js
 import React, { useState } from 'react';
-import '../assets/styles/UsernameForm.css';
+import '../../assets/styles/register/UsernameForm.css';
 
 const UsernameForm = ({ value, setValue, setConfirmPasswordError }) => {
     const [errorMessage, setErrorMessage] = useState('');

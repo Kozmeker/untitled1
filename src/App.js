@@ -10,6 +10,7 @@ import Exercises from "./pages/Exercises";
 import React, {useState} from "react";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Footer from "./components/Footer";
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -26,6 +27,7 @@ function App() {
                             <Route path="/aboutus" element={<AboutUs />} />
                             <Route path="/contact" element={<Contact />} />
                 </Routes>
+                <Footer></Footer>
             </div>
         </Router>
     );

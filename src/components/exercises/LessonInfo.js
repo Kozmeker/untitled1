@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment'; // Importovat moment.js pro manipulaci s daty
-import '../assets/styles/LessonInfo.css';
+import '../../assets/styles/exercises/LessonInfo.css';
 
 const LessonInfo = ({ lesson }) => {
     const { date, time } = lesson;

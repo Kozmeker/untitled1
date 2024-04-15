@@ -80,7 +80,12 @@ const Exercises = () => {
             ))}
 
             <Modal isOpen={isModalOpen} onClose={closeModal}>
-                <AdminLessonDetail initialLesson={selectedLesson} onSave={handleSaveLesson} onCancel={closeModal} />
+                {/* Podle stavu vybrané lekce zobrazit buď LessonDetail nebo AdminLessonDetail */}
+                {selectedLesson && selectedLesson.isAdmin ? (
+                    <AdminLessonDetail initialLesson={selectedLesson} onCancel={closeModal} />
+                ) : (
+                    <LessonDetail isAdmin={isAdmin} lesson={selectedLesson} onClose={closeModal} />
+                )}
             </Modal>
 
             {isAdmin && <button className="create-lesson-button" onClick={handleCreateLesson}>Vytvořit lekci</button>}

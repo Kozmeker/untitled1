@@ -75,6 +75,7 @@ const Exercises = () => {
     return (
         <div className="container">
             <h1>Cvičení!</h1>
+            {isAdmin && <button className="create-lesson-button" onClick={handleCreateLesson}>Vytvořit lekci</button>}
             {lessons.map((lesson) => (
                 <LessonPreview key={lesson.id} lesson={lesson} onClick={() => openModal(lesson)} />
             ))}
@@ -88,7 +89,7 @@ const Exercises = () => {
                 )}
             </Modal>
 
-            {isAdmin && <button className="create-lesson-button" onClick={handleCreateLesson}>Vytvořit lekci</button>}
+
         </div>
     );
 };

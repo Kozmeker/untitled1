@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import UsernameForm from './UsernameForm';
 import EmailForm from './EmailForm';
 import PasswordForm from './PasswordForm';
+import axios from 'axios';
+import bcrypt from 'bcryptjs';
 import '../../assets/styles/register/RegisterForm.css'; // Importujeme styly pro RegisterForm
 
 const RegisterForm = () => {
@@ -12,7 +14,7 @@ const RegisterForm = () => {
     const [registrationErrors, setRegistrationErrors] = useState([]);
 
     const errors = [];
-    const handleRegistration = () => {
+    const handleRegistration = async () => {
 
         if (username === '') {
             errors.push('Uživatelské jméno je povinné');
@@ -31,12 +33,25 @@ const RegisterForm = () => {
         }
         if (errors.length === 0) {
             // Vytvoření JSON objektu uživatele a odeslání
-            const user = {
+            const saltRounds = 10; // Počet iterací, které se mají použít pro generování soli (úrovně zabezpečení)
+            const hashedPassword = await bcrypt.hash(password, saltRounds); // Hashování hesla
+            const userData = {
                 username: username,
                 email: email,
-                password: password
+                password: hashedPassword, // Odesílání zahashovaného hesla
             };
-            console.log('Registrace:', user);
+            console.log('Registrace:', userData);
+// Odeslání dat na backend pomocí POST požadavku
+            axios.post('http://localhost:8080/api/register', userData)
+                .then(response => {
+                    // Zpracování odpovědi z backendu, např. zobrazení potvrzovacího popupu
+                    console.log('Registrace úspěšná', response.data);
+                })
+                .catch(error => {
+                    // Zpracování chyby, např. zobrazení chybového popupu
+                    console.error('Chyba při registraci', error);
+                });
+
             // Resetování stavu formuláře
             setUsername('');
             setEmail('');

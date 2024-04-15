@@ -1,17 +1,31 @@
+// LoginForm.js
 import React, { useState } from 'react';
 import LoginUsernameForm from './LoginUsernameForm';
 import LoginPasswordForm from './LoginPasswordForm';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import '../../assets/styles/login/LoginForm.css';
 
-const LoginForm = () => {
+const LoginForm = ({ onLoginSuccess }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loginErrors, setLoginErrors] = useState([]);
+    const [loggedInUser, setLoggedInUser] = useState(null);
+    const navigate = useNavigate();
 
     const handleLogin = () => {
-        // Implementace logiky pro přihlášení
-        const credentials = { username, password }; // Zde jsou získané hodnoty uživatelského jména a hesla
-        console.log('Přihlašovací údaje:', credentials); // Vypíše přihlašovací údaje do konzole
+        const credentials = { username, password: password };
+        console.log('Přihlašovací údaje:', credentials);
+
+        axios.post('http://localhost:8080/api/login', credentials)
+            .then(response => {
+                console.log('Odpověď z backendu:', response.data);
+                onLoginSuccess(response.data); // Zavolání funkce onLoginSuccess s odpovědí z backendu
+                navigate('/'); // Přesměrování na domovskou stránku
+            })
+            .catch(error => {
+                console.error('Chyba při přihlašování:', error);
+            });
     };
 
     return (
@@ -26,6 +40,14 @@ const LoginForm = () => {
                 setValue={setPassword}
             />
             <button onClick={handleLogin}>Přihlásit se</button>
+            {/* Zde můžete zobrazit další obsah nebo přesměrování na základě stavu loggedInUser */}
+            {loggedInUser && (
+                <div>
+                    <p>Přihlášení proběhlo úspěšně!</p>
+                    <p>Přihlášený uživatel: {loggedInUser.username}</p>
+                    {/* Zde můžete zobrazit další informace o přihlášeném uživateli */}
+                </div>
+            )}
         </div>
     );
 };

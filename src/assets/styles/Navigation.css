@@ -39,3 +39,23 @@ nav ul li a:hover {
 nav ul li a.active {
     font-weight: bold;
 }
+
+/* Přidání stylů pro tlačítko odhlášení */
+button {
+    background-color: #f44336; /* Červená barva pozadí */
+    color: white; /* Bílá barva textu */
+    border: none; /* Žádný ohraničení */
+    padding: 10px 20px; /* Odsazení uvnitř tlačítka */
+    cursor: pointer; /* Změna kurzoru na ukazatel */
+    border-radius: 5px; /* Zaoblené rohy */
+}
+
+/* Při najetí myši změníme barvu pozadí tlačítka */
+button:hover {
+    background-color: #d32f2f; /* Tmavší odstín červené */
+}
+
+/* Při stisknutí tlačítka snížíme jeho jas */
+button:active {
+    filter: brightness(90%); /* Snížení jasu na 90% */
+}

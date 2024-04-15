@@ -1,8 +1,9 @@
+// Navigation.js
 import '../assets/styles/Navigation.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Navigation = ({ isLoggedIn }) => {
+const Navigation = ({ loggedInUser, onLogout }) => {
     return (
         <nav>
             <ul>
@@ -10,7 +11,12 @@ const Navigation = ({ isLoggedIn }) => {
                 <li><Link to="/exercises">Cvičení</Link></li>
                 <li><Link to="/aboutus">O nás</Link></li>
                 <li><Link to="/contact">Kontakt</Link></li>
-                {isLoggedIn ? null : (
+                {loggedInUser ? (
+                    <>
+                        <li>Přihlášený uživatel: {loggedInUser.username}</li>
+                            <button onClick={onLogout}>Odhlásit se</button>
+                    </>
+                ) : (
                     <>
                         <li><Link to="/login">Přihlášení</Link></li>
                         <li><Link to="/register">Registrace</Link></li>
@@ -20,6 +26,5 @@ const Navigation = ({ isLoggedIn }) => {
         </nav>
     );
 }
-
 
 export default Navigation;

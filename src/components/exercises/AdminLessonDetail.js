@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import '../../assets/styles/exercises/AdminLessonDetail.css';
 
-const AdminLessonDetail = ({ initialLesson, onSave, onCancel }) => {
+const AdminLessonDetail = ({ initialLesson, onSave, onCancel, onDelete }) => {
     const [formData, setFormData] = useState({
         id: initialLesson.id || '',
         title: initialLesson.title || '',
@@ -16,11 +16,11 @@ const AdminLessonDetail = ({ initialLesson, onSave, onCancel }) => {
     const [users, setUsers] = useState([]);
     const [newUser, setNewUser] = useState('');
     const [newUsername, setNewUsername] = useState('');
-    const [exerciseusers, setExerciseusers] = useState([]);
+    const [exerciseusers, setExerciseusers] = useState(initialLesson.registrations);
+    const [lessonUsersObjects, setLessonUsersObjects] = useState([]);
 
     // Načtení uživatelů při načtení komponenty
     useEffect(() => {
-        console.log(formData)
         const fetchUsers = async () => {
             try {
                 const response = await axios.get(`http://localhost:8080/api/users`);
@@ -35,26 +35,33 @@ const AdminLessonDetail = ({ initialLesson, onSave, onCancel }) => {
     useEffect(() => {
         const fetchExerciseUsers = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/api/exercises/${initialLesson.id}/users`);
-                setExerciseusers(response.data);
+                const usersIds = exerciseusers; // Seznam id uživatelů
+                const fetchedUsers = [];
+                for (const userId of usersIds) {
+                    const userResponse = await axios.get(`http://localhost:8080/api/users/${userId}`);
+                    fetchedUsers.push(userResponse.data);
+                }
+                // Aktualizace stavu lessonUsersObjects s načtenými uživateli
+                setLessonUsersObjects(fetchedUsers);
             } catch (error) {
                 console.error('Chyba při načítání uživatelů:', error);
             }
         };
+
         fetchExerciseUsers();
-    }, [initialLesson.id]); // Zde přidáme initialLesson.id jako závislost, aby se načetli uživatelé při změně lekce.
+    }, [exerciseusers]); // Zde přidáme exerciseusers jako závislost, aby se načetli uživatelé při jejich změně.
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
-        console.log(formData.id)
     };
 
     const handleAddUser = async (user) => {
         try {
             // Přidání uživatele k lekci v lokální stavu formuláře
             const updatedFormData = { ...formData };
-            updatedFormData.registrations.push(user);
+            updatedFormData.registrations.push(user.id);
             setFormData(updatedFormData);
 
             // Vytvoření objektu pro aktualizaci lekce
@@ -64,7 +71,8 @@ const AdminLessonDetail = ({ initialLesson, onSave, onCancel }) => {
                 date: formData.date,
                 time: formData.time,
                 capacity: formData.capacity,
-                registrations: updatedFormData.registrations
+                registrations: updatedFormData.registrations,
+                description: formData.description
             };
 
             // Aktualizace lekce na backendu
@@ -95,10 +103,6 @@ const AdminLessonDetail = ({ initialLesson, onSave, onCancel }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         onSave(formData);
-    };
-
-    const onDelete = (e) =>{
-        console.log(3)
     };
 
 
@@ -135,17 +139,13 @@ const AdminLessonDetail = ({ initialLesson, onSave, onCancel }) => {
             <div className="registered-users">
                 <h4>Přihlášení uživatelé:</h4>
                 <ul>
-                    {exerciseusers.map((user) => (
+                    {lessonUsersObjects.map((user) => (
                         <li key={user.id}>
                             {user.username}
                             <button onClick={() => handleRemoveUser(user.id)}>Odebrat</button>
                         </li>
                     ))}
                 </ul>
-                <div className="add-user-form">
-                    <input type="text" value={newUsername} onChange={(e) => setNewUsername(e.target.value)} />
-                    <button onClick={() => handleAddUser(newUsername)}>Přidat uživatele</button>
-                </div>
                 <div className="users-not-registered">
                     <h4>Uživatelé k přidání:</h4>
                     <ul>
@@ -169,6 +169,7 @@ AdminLessonDetail.propTypes = {
     initialLesson: PropTypes.object.isRequired,
     onSave: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired
 };
 
 

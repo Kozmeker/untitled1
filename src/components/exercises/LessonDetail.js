@@ -9,21 +9,11 @@ import AdminLessonDetail from './AdminLessonDetail'; // Import komponenty AdminL
 import EditLessonButton from './EditLessonButton'; // Import komponenty EditLessonButton
 import '../../assets/styles/exercises/LessonDetail.css';
 
-const LessonDetail = ({ onClose, isAdmin }) => {
+const LessonDetail = ({ onClose, isAdmin, lesson }) => {
     const [isEditing, setIsEditing] = useState(false); // Stav pro určení, zda se má zobrazit formulář pro úpravu
 
-    const lesson = {
-        id: 1,
-        title: "Pilates",
-        date: "2024-04-10",
-        time: "15:00",
-        capacity: 10,
-        registrations: ["Alice", "Bob", "Charlie", "Charlie", "Charlie", "Charlie", "Charlie", "Charlie", "Charlie", "Charlie"],
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique eu justo at maximus. Nulla facilisi. Donec id mi at nibh ultricies cursus. Fusce non sapien a risus sollicitudin maximus vel a turpis. Sed non odio a eros bibendum vehicula. Sed vulputate erat quis enim rhoncus, at interdum magna interdum. Sed vel ante at velit tempor vestibulum. Nam eu purus vel nisi pellentesque suscipit. Donec at laoreet odio."
-    };
-
-    const { title, date, time, capacity, registrations, isRegistered } = lesson;
-    const enrolled = registrations.length;
+    const { title, date, time, capacity, registrations, isRegistered,description } = lesson;
+    const enrolled = registrations !== undefined ? registrations.length : 0;
     const isFull = enrolled >= capacity;
 
     const handleEditClick = () => {

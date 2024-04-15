@@ -5,7 +5,7 @@ const CapacityStatus = ({ lesson }) => {
     const { capacity, registrations } = lesson;
 
     // Počet registrovaných účastníků
-    const enrolled = registrations.length;
+    const enrolled = registrations !== undefined ? registrations.length : 0;
 
     // Determinovat, zda je kapacita plná
     const isFull = enrolled === capacity;

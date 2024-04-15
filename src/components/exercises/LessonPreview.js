@@ -4,9 +4,8 @@ import moment from "moment/moment";
 
 const LessonPreview = ({ lesson, onClick }) => {
     const { title, date, time, capacity, registrations } = lesson;
-
     // Určení, zda je kapacita rovna počtu přihlášených
-    const isFull = capacity === registrations.length;
+    const isFull = capacity === lesson.registrations.length;
 
     const formattedDate = moment(date).format('D.M.YYYY');
 

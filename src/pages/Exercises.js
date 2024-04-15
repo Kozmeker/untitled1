@@ -15,14 +15,16 @@ const Exercises = () => {
     const [lessons, setLessons] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/exercises')
-            .then(response => {
+        (async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/api/exercises');
                 setLessons(response.data);
-            })
-            .catch(error => {
+            } catch (error) {
                 console.error('Error fetching lessons:', error);
-            });
+            }
+        })();
     }, [isModalOpen]);
+
 
     const openModal = (lesson) => {
         setSelectedLesson(lesson);
@@ -46,10 +48,11 @@ const Exercises = () => {
                 registrations: []
             });
 
-            // Získání nově vytvořené lekce z odpovědi
-            const newLesson = response.data;
-            console.log(newLesson)
-            // Aktualizace selectedLesson
+            // Získání id nově vytvořené lekce z odpovědi
+            const newLessonId = response.data;
+
+            // Aktualizace stavu nově vytvořené lekce s id
+            const newLesson = { ...response.data, id: newLessonId };
             setSelectedLesson(newLesson);
 
             // Otevření modálního okna pro editaci nové lekce
@@ -59,13 +62,25 @@ const Exercises = () => {
         }
     };
 
+
+    const handleDeleteLesson = async () => {
+        try {
+            // Volání API pro odebrání uživatele z lekce
+            await axios.delete(`http://localhost:8080/api/exercises/${selectedLesson.id}`);
+            console.log('Lekce byla úspěšně smazána');
+            setIsModalOpen(false);
+        } catch (error) {
+            console.error('Chyba při odebírání lekce:', error);
+        }
+    };
+
+
     const handleSaveLesson = (lessonData) => {
         // Zde bychom měli odeslat data na backend pomocí Axiosu a poté aktualizovat seznam lekcí
-        axios.post('http://localhost:8080/api/exercises', lessonData)
+        axios.put(`http://localhost:8080/api/exercises/${lessonData.id}`, lessonData)
             .then(response => {
                 // Po úspěšném uložení lekce zavřeme modal a aktualizujeme seznam lekcí
                 setIsModalOpen(false);
-                setLessons([...lessons, response.data]);
             })
             .catch(error => {
                 console.error('Error saving lesson:', error);
@@ -82,8 +97,8 @@ const Exercises = () => {
 
             <Modal isOpen={isModalOpen} onClose={closeModal}>
                 {/* Podle stavu vybrané lekce zobrazit buď LessonDetail nebo AdminLessonDetail */}
-                {selectedLesson && loggedInUser.admin ? (
-                    <AdminLessonDetail initialLesson={selectedLesson} onSave={handleSaveLesson} onCancel={closeModal} />
+                {isAdmin ? (
+                    <AdminLessonDetail initialLesson={selectedLesson} onSave={handleSaveLesson} onCancel={closeModal} onDelete={handleDeleteLesson} />
                 ) : (
                     <LessonDetail isAdmin={isAdmin} lesson={selectedLesson} onClose={closeModal} />
                 )}

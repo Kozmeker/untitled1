@@ -82,7 +82,7 @@ const Exercises = () => {
             <Modal isOpen={isModalOpen} onClose={closeModal}>
                 {/* Podle stavu vybrané lekce zobrazit buď LessonDetail nebo AdminLessonDetail */}
                 {selectedLesson && selectedLesson.isAdmin ? (
-                    <AdminLessonDetail initialLesson={selectedLesson} onCancel={closeModal} />
+                    <AdminLessonDetail initialLesson={selectedLesson} onSave={handleSaveLesson} onCancel={closeModal} />
                 ) : (
                     <LessonDetail isAdmin={isAdmin} lesson={selectedLesson} onClose={closeModal} />
                 )}

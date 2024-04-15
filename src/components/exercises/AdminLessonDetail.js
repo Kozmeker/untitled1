@@ -5,11 +5,13 @@ import '../../assets/styles/exercises/AdminLessonDetail.css';
 
 const AdminLessonDetail = ({ initialLesson, onSave, onCancel }) => {
     const [formData, setFormData] = useState({
+        id: initialLesson.id || '',
         title: initialLesson.title || '',
         date: initialLesson.date || '',
         time: initialLesson.time || '',
         capacity: initialLesson.capacity || 0,
         description: initialLesson.description || '',
+        registrations: initialLesson.registrations ||  []
     });
     const [users, setUsers] = useState([]);
     const [newUser, setNewUser] = useState('');
@@ -45,19 +47,38 @@ const AdminLessonDetail = ({ initialLesson, onSave, onCancel }) => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+        console.log(formData.id)
     };
 
-    const handleAddUser = async (userId) => {
+    const handleAddUser = async (user) => {
         try {
-            // Volání API pro přidání uživatele k lekci
-            await axios.post(`http://localhost:8080/api/exercises/${initialLesson.id}/users/${userId}`);
+            // Přidání uživatele k lekci v lokální stavu formuláře
+            const updatedFormData = { ...formData };
+            updatedFormData.registrations.push(user);
+            setFormData(updatedFormData);
+
+            // Vytvoření objektu pro aktualizaci lekce
+            const updatedExercise = {
+                id: formData.id,
+                title: formData.title,
+                date: formData.date,
+                time: formData.time,
+                capacity: formData.capacity,
+                registrations: updatedFormData.registrations
+            };
+
+            // Aktualizace lekce na backendu
+            await axios.put(`http://localhost:8080/api/exercises/${formData.id}`, updatedExercise);
+
             console.log('Uživatel byl úspěšně přidán k lekci');
+
             // Aktualizace seznamu uživatelů
-            setUsers([...users, userId]);
+            setUsers([...users, user]);
         } catch (error) {
             console.error('Chyba při přidávání uživatele k lekci:', error);
         }
     };
+
 
     const handleRemoveUser = async (userId) => {
         try {
@@ -133,7 +154,7 @@ const AdminLessonDetail = ({ initialLesson, onSave, onCancel }) => {
                             .map((user) => (
                                 <li key={user.id}>
                                     {user.username}
-                                    <button onClick={() => handleAddUser(user.id)}>Přidat</button>
+                                    <button onClick={() => handleAddUser(user)}>Přidat</button>
                                 </li>
                             ))}
                     </ul>

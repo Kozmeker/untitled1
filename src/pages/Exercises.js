@@ -48,7 +48,7 @@ const Exercises = () => {
 
             // Získání nově vytvořené lekce z odpovědi
             const newLesson = response.data;
-
+            console.log(newLesson)
             // Aktualizace selectedLesson
             setSelectedLesson(newLesson);
 
@@ -81,7 +81,7 @@ const Exercises = () => {
 
             <Modal isOpen={isModalOpen} onClose={closeModal}>
                 {/* Podle stavu vybrané lekce zobrazit buď LessonDetail nebo AdminLessonDetail */}
-                {selectedLesson && selectedLesson.isAdmin ? (
+                {selectedLesson && loggedInUser.admin ? (
                     <AdminLessonDetail initialLesson={selectedLesson} onSave={handleSaveLesson} onCancel={closeModal} />
                 ) : (
                     <LessonDetail isAdmin={isAdmin} lesson={selectedLesson} onClose={closeModal} />

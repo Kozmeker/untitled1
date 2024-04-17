@@ -3,8 +3,8 @@ import '../../assets/styles/register/PasswordForm.css';
 
 const PasswordForm = ({ value, setValue, confirmValue, setConfirmValue,setPasswordError,setConfirmPasswordError }) => {
     const [password, setPassword] = useState('');
-    const [passwordError, setPasswordError] = useState('');
-    const [confirmPasswordError, setConfirmPasswordError] = useState('');
+    const [passError, setPassError] = useState('');
+    const [confirmPassError, setConfirmPassError] = useState('');
 
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{4,16}$/;
 
@@ -23,8 +23,10 @@ const PasswordForm = ({ value, setValue, confirmValue, setConfirmValue,setPasswo
         setPassword(value);
         if (!passwordRegex.test(value) && value !== '') {
             setPasswordError('Heslo musí být dlouhé 4-16 znaků a obsahovat alespoň jedno velké písmeno a alespoň jedno číslo');
+            setPassError('Heslo musí být dlouhé 4-16 znaků a obsahovat alespoň jedno velké písmeno a alespoň jedno číslo');
         } else {
             setPasswordError('');
+            setPassError('');
         }
     };
 
@@ -33,8 +35,10 @@ const PasswordForm = ({ value, setValue, confirmValue, setConfirmValue,setPasswo
         setConfirmValue(value);
         if (value !== password) {
             setConfirmPasswordError('Hesla se neshodují');
+            setConfirmPassError('Hesla se neshodují');
         } else {
             setConfirmPasswordError('');
+            setConfirmPassError('');
         }
     };
 
@@ -52,7 +56,7 @@ const PasswordForm = ({ value, setValue, confirmValue, setConfirmValue,setPasswo
                     onChange={handleChangePassword}
                     className="password-input"
                 />
-                {passwordError && <div className="error-message">{passwordError}</div>}
+                {passError && <div className="error-message">{passError}</div>}
             </div>
             <div>
                 <label htmlFor="confirmPassword">Potvrzení hesla:</label>
@@ -64,7 +68,7 @@ const PasswordForm = ({ value, setValue, confirmValue, setConfirmValue,setPasswo
                     onChange={handleChangeConfirmPassword}
                     className="password-input"
                 />
-                {confirmPasswordError && <div className="error-message">{confirmPasswordError}</div>}
+                {confirmPassError && <div className="error-message">{confirmPassError}</div>}
             </div>
         </div>
     );

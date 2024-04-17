@@ -89,18 +89,20 @@ const Exercises = () => {
 
     return (
         <div className="container">
-            <h1>Cvičení!</h1>
+            <h1>Přihlášení na cvičení</h1>
             {isAdmin && <button className="create-lesson-button" onClick={handleCreateLesson}>Vytvořit lekci</button>}
+            <p>Pokud jste u nás registrováni, můžete se zapsat na některou z našich lekcí.</p>
             {lessons.map((lesson) => (
-                <LessonPreview key={lesson.id} lesson={lesson} onClick={() => openModal(lesson)} />
+                <LessonPreview key={lesson.id} lesson={lesson} onClick={() => openModal(lesson)}/>
             ))}
 
             <Modal isOpen={isModalOpen} onClose={closeModal}>
                 {/* Podle stavu vybrané lekce zobrazit buď LessonDetail nebo AdminLessonDetail */}
                 {isAdmin ? (
-                    <AdminLessonDetail initialLesson={selectedLesson} onSave={handleSaveLesson} onCancel={closeModal} onDelete={handleDeleteLesson} />
+                    <AdminLessonDetail initialLesson={selectedLesson} onSave={handleSaveLesson} onCancel={closeModal}
+                                       onDelete={handleDeleteLesson}/>
                 ) : (
-                    <LessonDetail isAdmin={isAdmin} lesson={selectedLesson} onClose={closeModal} />
+                    <LessonDetail isAdmin={isAdmin} lesson={selectedLesson} onClose={closeModal}/>
                 )}
             </Modal>
 

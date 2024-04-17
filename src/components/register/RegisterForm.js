@@ -19,7 +19,6 @@ const RegisterForm = () => {
     });
 
     const handleRegistration = async () => {
-
         if (username === '') {
             registrationErrors.username =('Uživatelské jméno neodpovídá danému formátu');
         }
@@ -30,14 +29,13 @@ const RegisterForm = () => {
             registrationErrors.password =('Heslo je povinné v daném formátu');
         }
         if (password !== confirmPassword) {
-            console.log(password)
-            console.log(confirmPassword)
             registrationErrors.confirmPassword =('Hesla se neshodují');
         }
         if (confirmPassword === '') {
             registrationErrors.confirmPassword =('Potvrzení hesla je povinné');
         }
-        if (registrationErrors.length === 0) {
+        const hasErrors = Object.values(registrationErrors).some(value => value !== '');
+        if (!hasErrors) {
             // Vytvoření JSON objektu uživatele a odeslání
             const saltRounds = 10; // Počet iterací, které se mají použít pro generování soli (úrovně zabezpečení)
             const hashedPassword = await bcrypt.hash(password, saltRounds); // Hashování hesla

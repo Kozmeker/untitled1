@@ -9,8 +9,10 @@ body {
 }
 
 .container {
-    width: 80%;
+    max-width: 800px; /* případně jakýkoliv jiný maximální šířku, kterou chcete */
+    margin: 0 auto; /* toto vycentruje container do středu stránky */
 }
+
 
 h1 {
     text-align: center;

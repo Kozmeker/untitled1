@@ -92,10 +92,13 @@ const Exercises = () => {
             <h1>Přihlášení na cvičení</h1>
             {isAdmin && <button className="create-lesson-button" onClick={handleCreateLesson}>Vytvořit lekci</button>}
             <p>Pokud jste u nás registrováni, můžete se zapsat na některou z našich lekcí.</p>
+            <div className={"lessons"}>
             {lessons.map((lesson) => (
+                <div className={"lesson"}>
                 <LessonPreview key={lesson.id} lesson={lesson} onClick={() => openModal(lesson)}/>
+                </div>
             ))}
-
+            </div>
             <Modal isOpen={isModalOpen} onClose={closeModal}>
                 {/* Podle stavu vybrané lekce zobrazit buď LessonDetail nebo AdminLessonDetail */}
                 {isAdmin ? (

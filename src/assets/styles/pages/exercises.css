@@ -11,7 +11,20 @@ body {
 .container {
     max-width: 800px; /* případně jakýkoliv jiný maximální šířku, kterou chcete */
     margin: 0 auto; /* toto vycentruje container do středu stránky */
+    display: table;
 }
+
+.lessons {
+    display: flex;
+    flex-wrap: wrap; /* Povolíme přechod do nového řádku */
+    justify-content: space-between; /* Rozprostřeme lekce rovnoměrně ve flexibilním kontejneru */
+}
+
+.lesson {
+    flex: 1 0 calc(33.33% - 20px); /* Využijeme flexbox vlastnost a nastavíme šířku lekcí */
+    margin: 0 10px 20px 10px; /* Nastavíme vnější okraje lekcí */
+}
+
 
 
 h1 {

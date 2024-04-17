@@ -11,27 +11,33 @@ const RegisterForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [registrationErrors, setRegistrationErrors] = useState([]);
+    const [registrationErrors, setRegistrationErrors] = useState({
+        username: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+    });
 
-    const errors = [];
     const handleRegistration = async () => {
 
         if (username === '') {
-            errors.push('Uživatelské jméno je povinné');
+            registrationErrors.username =('Uživatelské jméno neodpovídá danému formátu');
         }
         if (email === '') {
-            errors.push('Email je povinný');
+            registrationErrors.email =('Email je povinný v daném formátu');
         }
         if (password === '') {
-            errors.push('Heslo je povinné');
-        }
-        if (confirmPassword === '') {
-            errors.push('Potvrzení hesla je povinné');
+            registrationErrors.password =('Heslo je povinné v daném formátu');
         }
         if (password !== confirmPassword) {
-            errors.push('Hesla se neshodují');
+            console.log(password)
+            console.log(confirmPassword)
+            registrationErrors.confirmPassword =('Hesla se neshodují');
         }
-        if (errors.length === 0) {
+        if (confirmPassword === '') {
+            registrationErrors.confirmPassword =('Potvrzení hesla je povinné');
+        }
+        if (registrationErrors.length === 0) {
             // Vytvoření JSON objektu uživatele a odeslání
             const saltRounds = 10; // Počet iterací, které se mají použít pro generování soli (úrovně zabezpečení)
             const hashedPassword = await bcrypt.hash(password, saltRounds); // Hashování hesla
@@ -60,9 +66,13 @@ const RegisterForm = () => {
             setRegistrationErrors([]);
         } else {
             // Zobrazení chybového popupu
-            alert(errors.join('\n'));
-            setRegistrationErrors(errors);
+            const registrationErrorsToString = (errors) => {
+                return Object.values(errors)
+                    .filter(val => val) // Filtrujeme pouze neprázdné hodnoty (chyby)
+                    .join('\n'); // Spojujeme chyby do jednoho řetězce s novým řádkem mezi nimi
+            };
 
+            alert(registrationErrorsToString(registrationErrors));
         }
     };
 
@@ -72,20 +82,20 @@ const RegisterForm = () => {
             <UsernameForm
                 value={username}
                 setValue={setUsername}
-                setConfirmPasswordError={(error) => setRegistrationErrors((prevErrors) => [...prevErrors, error])}
+                setConfirmPasswordError={(error) => registrationErrors.username = error}
             />
             <EmailForm
                 value={email}
                 setValue={setEmail}
-                setConfirmPasswordError={(error) => setRegistrationErrors((prevErrors) => [...prevErrors, error])}
+                setConfirmPasswordError={(error) => registrationErrors.email = error}
             />
             <PasswordForm
                 value={password}
                 setValue={setPassword}
                 confirmValue={confirmPassword}
                 setConfirmValue={setConfirmPassword}
-                setPasswordError={(error) => setRegistrationErrors((prevErrors) => [...prevErrors, error])}
-                setConfirmPasswordError={(error) => setRegistrationErrors((prevErrors) => [...prevErrors, error])}
+                setPasswordError={(error) => registrationErrors.password = error}
+                setConfirmPasswordError={(error) => registrationErrors.confirmPassword = error}
             />
             <button onClick={handleRegistration}>Zaregistrovat se</button>
         </div>

@@ -1,18 +1,27 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../assets/styles/register/PasswordForm.css';
 
-const PasswordForm = ({ value, setValue, confirmValue, setConfirmValue }) => {
+const PasswordForm = ({ value, setValue, confirmValue, setConfirmValue,setPasswordError,setConfirmPasswordError }) => {
     const [password, setPassword] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{4,16}$/;
 
+
+    useEffect(() => {
+        if (value !== password && value !== '' && password !== '') {
+            setConfirmPasswordError('Hesla se neshodují');
+        } else {
+            setConfirmPasswordError('');
+        }
+    }, [value, password]);
+
     const handleChangePassword = (event) => {
         const value = event.target.value;
         setValue(value);
-        setPassword(value)
-        if (!passwordRegex.test(value)) {
+        setPassword(value);
+        if (!passwordRegex.test(value) && value !== '') {
             setPasswordError('Heslo musí být dlouhé 4-16 znaků a obsahovat alespoň jedno velké písmeno a alespoň jedno číslo');
         } else {
             setPasswordError('');
@@ -28,6 +37,8 @@ const PasswordForm = ({ value, setValue, confirmValue, setConfirmValue }) => {
             setConfirmPasswordError('');
         }
     };
+
+
 
     return (
         <div className="password-form-container">

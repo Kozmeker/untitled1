@@ -50,16 +50,16 @@ const Exercises = () => {
 
             // Získání id nově vytvořené lekce z odpovědi
             const newLessonId = response.data;
-
+            const newExercise = await axios.get(`http://localhost:8080/api/exercises/${newLessonId}`);
             // Aktualizace stavu nově vytvořené lekce s id
-            const newLesson = { ...response.data, id: newLessonId };
-            setSelectedLesson(newLesson);
+            setSelectedLesson(newExercise.data);
 
             // Otevření modálního okna pro editaci nové lekce
             setIsModalOpen(true);
         } catch (error) {
             console.error('Chyba při vytváření lekce:', error);
         }
+
     };
 
 

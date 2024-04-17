@@ -1,13 +1,10 @@
 import React, {useState, useEffect, createContext} from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
-import AboutUs from './pages/AboutUs';
-import Contact from './pages/Contact';
 import Exercises from './pages/Exercises';
 import Register from './pages/Register';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
-import axios from 'axios';
 import LoginForm from "./components/login/LoginForm";
 
 // Definice UserContext mimo komponentu App
@@ -31,6 +28,7 @@ function App() {
     const handleLogout = () => {
         setLoggedInUser(null);
         localStorage.removeItem('loggedInUser');
+        window.location.href = '/';
     };
 
     return (
@@ -43,10 +41,8 @@ function App() {
                         <Route path="/register" element={<Register />} />
                         <Route path="/" element={<Home />} />
                         <Route path="/exercises" element={<Exercises />} />
-                        <Route path="/aboutus" element={<AboutUs />} />
-                        <Route path="/contact" element={<Contact />} />
                     </Routes>
-                    <Footer />
+                    <Footer/>
                 </div>
             </Router>
         </UserContext.Provider>

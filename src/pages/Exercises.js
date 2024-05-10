@@ -4,7 +4,7 @@ import LessonPreview from '../components/exercises/LessonPreview';
 import Modal from '../components/Modal';
 import LessonDetail from '../components/exercises/LessonDetail';
 import AdminLessonDetail from '../components/exercises/AdminLessonDetail';
-import '../assets/styles/pages/exercises.css';
+import '../assets/styles/pages/Exercises.css';
 import { UserContext } from "../App";
 
 const Exercises = () => {

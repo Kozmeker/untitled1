@@ -1,0 +1,19 @@
+.trainer-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.trainer-property {
+    margin-bottom: 5px;
+}
+
+.trainer-name {
+    font-weight: bold;
+}
+
+.trainer-email,
+.trainer-age {
+    font-style: italic;
+}

@@ -9,8 +9,10 @@ const Navigation = ({ loggedInUser, onLogout }) => {
             <ul>
                 <li><Link to="/">Domů</Link></li>
                 <li><Link to="/exercises">Cvičení</Link></li>
+                <li><Link to="/trainers">Osobní Trenéři</Link></li>
                 {loggedInUser ? (
                     <>
+                        <li><Link to="/personalConsultations">Osobní Konzultace</Link></li>
                         <li>Přihlášený uživatel: {loggedInUser.username}</li>
                             <button onClick={onLogout}>Odhlásit se</button>
                     </>

@@ -1,0 +1,36 @@
+.consultation-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.consultation-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.consultation-info {
+    margin-bottom: 10px;
+}
+
+.consultation-info p {
+    margin: 5px 0;
+}
+
+.consultation-actions {
+    margin-top: 10px;
+}
+
+.consultation-actions button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.consultation-actions button:hover {
+    background-color: #0056b3;
+}

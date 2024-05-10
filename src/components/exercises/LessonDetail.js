@@ -76,7 +76,11 @@ const LessonDetail = ({ onClose, isAdmin, lesson }) => {
                     </div>
                     <div className="lesson-buttons">
                         {isFull ? (
-                            <p className="full-message">Kapacita této lekce je již plná.</p>
+                            isRegistered ? (
+                                <button className="unregister-button" onClick={handleLogout}>Odhlásit se</button>
+                            ) : (
+                                <p className="full-message">Kapacita této lekce je již plná.</p>
+                            )
                         ) : loggedInUser ? (
                             isRegistered ? (
                                 <button className="unregister-button" onClick={handleLogout}>Odhlásit se</button>
@@ -84,6 +88,7 @@ const LessonDetail = ({ onClose, isAdmin, lesson }) => {
                                 <button className="register-button" onClick={handleRegister}>Přihlásit se</button>
                             )
                         ) : null}
+
 
                         <CloseButton onClose={onClose} />
                         {isAdmin && (

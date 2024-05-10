@@ -6,6 +6,8 @@ import Register from './pages/Register';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import LoginForm from "./components/login/LoginForm";
+import PersonalConsultations from "./pages/PersonalConsultations";
+import Trainers from "./pages/Trainers";
 
 // Definice UserContext mimo komponentu App
 export const UserContext = createContext(null);
@@ -41,6 +43,8 @@ function App() {
                         <Route path="/register" element={<Register />} />
                         <Route path="/" element={<Home />} />
                         <Route path="/exercises" element={<Exercises />} />
+                        <Route path="/trainers" element={<Trainers />} />
+                        <Route path="/personalConsultations" element={<PersonalConsultations />} />
                     </Routes>
                     <Footer/>
                 </div>
